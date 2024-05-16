@@ -4,6 +4,10 @@ folder=$(echo $(cd -- $(dirname -- "${BASH_SOURCE[0]}") && pwd) | awk -F/ '{prin
 config=~/scripts/$folder/cfg
 
 #install binary
-#put instalation script here
+cd ~
+git clone https://github.com/initia-labs/initia.git
+cd initia
+git checkout v0.2.14
+make install
 
 $BINARY version
