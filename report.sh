@@ -22,7 +22,7 @@ pubkey=$($BINARY tendermint show-validator --log_format json | jq -r .key)
 delegators=$($BINARY query mstaking delegations-to $valoper -o json | jq '.delegation_responses | length')
 jailed=$($BINARY query mstaking validator $valoper -o json | jq -r .jailed)
 if [ -z $jailed ]; then jailed=false; fi
-tokens=$($BINARY query mstaking validator $valoper -o json | jq -r .tokens | awk '{print $1/1000000}')
+tokens=$($BINARY query mstaking validator $valoper -o json | jq -r .tokens[].amount )
 balance=$($BINARY query bank balances $wallet -o json 2>/dev/null \
       | jq -r '.balances[] | select(.denom=="'$DENOM'")' | jq -r .amount)
 active=$(initiad query consensus comet validator-set | grep -c $pubkey)
