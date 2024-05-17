@@ -57,7 +57,7 @@ cat << EOF
   "chain":"$chain",
   "status":"$status",
   "message":"$message",
-  "rpcport":"$rpc_port",
+  "rpcport":"$RPC_PORT",
   "folder1":"$foldersize1",
   "moniker":"$moniker",
   "key":"$KEY",
