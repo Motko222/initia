@@ -29,7 +29,7 @@ sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.initia/config/config.toml
 # Disable state sync
 sed -i -e "s/^enable *=.*/enable = false/" $HOME/.initia/config/config.toml
 
-echo "Snapshot height? (https://polkachu.com/testnets/initia/snapshots) : height
+echo "Snapshot height? (https://polkachu.com/testnets/initia/snapshots) :" height
 
 curl https://snapshots.polkachu.com/testnet-snapshots/initia/initia_$height.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.initia
 
