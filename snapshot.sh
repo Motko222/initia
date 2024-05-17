@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ~/.bash_profile
+
 read -p "Are you sure? " answer
 case $answer in
   y|Y|yes|YES) echo "Restoring from snapshot..." ;;
