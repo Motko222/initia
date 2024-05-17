@@ -18,5 +18,5 @@ def_valoper=$(echo $PASS | $BINARY keys show $KEY -a --bech val)
 
 [ -z $3 ] && read -p "Amount ? " amount || amount=$3
 
-echo $PASS | $BINARY tx staking delegate $valoper $amount$DENOM --from $key \
+echo $PASS | $BINARY tx mstaking delegate $valoper $amount$DENOM --from $key \
  --gas-prices $GAS_PRICE --gas-adjustment $GAS_ADJ --gas auto -y | tail -1
