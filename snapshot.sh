@@ -21,7 +21,7 @@ initiad comet unsafe-reset-all --home $HOME/.initia --keep-addr-book
 sed -i -e "s/^pruning *=.*/pruning = \"custom\"/" $HOME/.initia/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"100\"/" $HOME/.initia/config/app.toml
 sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"0\"/" $HOME/.initia/config/app.toml
-sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"10\"/" $HOME/.initia/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"19\"/" $HOME/.initia/config/app.toml
 sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.initia/config/config.toml
 
 # Disable state sync
