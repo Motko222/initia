@@ -1,7 +1,8 @@
-KEY=
-BINARY=
-GAS_PRICE=
-GAS_ADJ=
+KEY=main
+BINARY=initiad
+GAS_PRICE=0.15uinit
+GAS_ADJ=2
 PASS=
-DATA=
-DENOM=
+DATA=~/.initia
+DENOM=uinit
+RPC_PORT=26657
