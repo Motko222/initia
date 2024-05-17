@@ -9,7 +9,7 @@ source ~/scripts/$folder/cfg
 [ -z $key ] && key=$KEY
 
 wallet=$(echo $PASS | $BINARY keys show $key -a)
-balance=$($BINARY query bank balances $wallet -o json 2>/dev/null | jq -r '.balances[] | select(.denom=="'$DENOM'")' | jq -r .amount)
+balance=$($BINARY query bank balances $wallet -o json 2>/dev/null | jq -r '.balances[] | select(.denom=="uinit")' | jq -r .amount)
 echo "Balance: $balance $DENOM"
 
 def_valoper=$(echo $PASS | $BINARY keys show $KEY -a --bech val)
