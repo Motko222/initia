@@ -5,30 +5,28 @@ source ~/scripts/$folder/cfg
 source ~/.bash_profile
 
 bucket=validator
-rpc_port=$(mantrachaind config | jq -r .node | cut -d : -f 3)
-json=$(curl -s localhost:$rpc_port/status | jq .result.sync_info)
+json=$(curl -s localhost:$RPC_PORT/status | jq .result.sync_info)
 pid=$(pgrep $BINARY)
 version=$($BINARY version)
-network=$($BINARY status | jq -r .NodeInfo.network)
-type="validator"
-foldersize1=$(du -hs ~/.pryzm | awk '{print $1}')
-#foldersize2=$(du -hs ~/pryzm | awk '{print $1}')
+chain=$(initiad status | jq -r .node_info.network)
+foldersize1=$(du -hs /mnt/Temp1/.initia | awk '{print $1}')
 latestBlock=$(echo $json | jq -r .latest_block_height)
+network_height=$(curl -s https://rpc-initia-testnet.trusted-point.com/status | jq -r .result.sync_info.latest_block_height)
 catchingUp=$(echo $json | jq -r .catching_up)
 votingPower=$($BINARY status 2>&1 | jq -r .ValidatorInfo.VotingPower)
-chain=$(echo $json | jq -r '."chain-id"')
 wallet=$(echo $PASS | $BINARY keys show $KEY -a)
 valoper=$(echo $PASS | $BINARY keys show $KEY -a --bech val)
-moniker=$($BINARY query staking validator $valoper -o json | jq -r .description.moniker)
+moniker=Antares
+#moniker=$($BINARY query mstaking validator $valoper -o json | jq -r .description.moniker)
 pubkey=$($BINARY tendermint show-validator --log_format json | jq -r .key)
-delegators=$($BINARY query staking delegations-to $valoper -o json | jq '.delegation_responses | length')
-jailed=$($BINARY query staking validator $valoper -o json | jq -r .jailed)
+delegators=$($BINARY query mstaking delegations-to $valoper -o json | jq '.delegation_responses | length')
+jailed=$($BINARY query mstaking validator $valoper -o json | jq -r .jailed)
 if [ -z $jailed ]; then jailed=false; fi
-tokens=$($BINARY query staking validator $valoper -o json | jq -r .tokens | awk '{print $1/1000000}')
+tokens=$($BINARY query mstaking validator $valoper -o json | jq -r .tokens | awk '{print $1/1000000}')
 balance=$($BINARY query bank balances $wallet -o json 2>/dev/null \
       | jq -r '.balances[] | select(.denom=="'$DENOM'")' | jq -r .amount)
-active=$($BINARY query tendermint-validator-set | grep -c $pubkey)
-threshold=$($BINARY query tendermint-validator-set -o json | jq -r .validators[].voting_power | tail -1)
+active=$(initiad query consensus comet validator-set | grep -c $pubkey)
+threshold=$(initiad query consensus comet validator-set -o json | jq -r .validators[].voting_power | tail -1)
 
 if $catchingUp
  then 
@@ -70,6 +68,7 @@ cat << EOF
   "jailed":"$jailed",
   "active":$active,
   "height":$latestBlock,
+  "network_height":$network_height,
   "votingPower":$votingPower,
   "tokens":$tokens,
   "threshold":$threshold,
