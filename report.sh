@@ -24,7 +24,7 @@ jailed=$($BINARY query mstaking validator $valoper -o json | jq -r .jailed)
 if [ -z $jailed ]; then jailed=false; fi
 tokens=$($BINARY query mstaking validator $valoper -o json | jq -r .tokens[].amount | awk '{print $1/1000000}' )
 balance=$($BINARY query bank balances $wallet -o json 2>/dev/null \
-      | jq -r '.balances[] | select(.denom=="'$DENOM'")' | jq -r .amount)
+      | jq -r '.balances[] | select(.denom=="uinit")' | jq -r .amount)
 active=$(initiad query consensus comet validator-set | grep -c $pubkey)
 threshold=$(initiad query consensus comet validator-set -o json | jq -r .validators[].voting_power | tail -1)
 
