@@ -10,3 +10,5 @@ cd ~/initia
 git fetch
 git checkout v0.2.15
 make install
+
+sudo systemctl start $BINARY.service
