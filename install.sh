@@ -20,4 +20,7 @@ cd initia
 git checkout v0.2.14
 make install
 
+cd ~/scripts/initia
+cp cfg.sample cfg
+
 $BINARY version
