@@ -5,8 +5,7 @@ source ~/scripts/$folder/cfg
 
 sudo systemctl stop $BINARY.service
 
-cd ~
-git clone https://github.com/initia-labs/initia.git
-cd initia
+cd ~/initia
+git fetch
 git checkout v0.2.15
 make install
