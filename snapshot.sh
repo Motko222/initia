@@ -36,4 +36,7 @@ curl https://snapshots.polkachu.com/testnet-snapshots/initia/initia_$height.tar.
 # Restore the priv_validator_state
 mv $HOME/.initia/priv_validator_state.json.backup $HOME/.initia/data/priv_validator_state.json
 
-echo "Snapshot restore finished, start the node."
+echo "Snapshot restore finished, starting the node."
+
+#start service
+sudo systemctl start initiad.service
