@@ -38,12 +38,12 @@ fi
 
 if $jailed
  then
-  status="error"
+  status="jailed"
   message="jailed"
 fi 
 
 if [ -z $pid ];
-then status="error";
+then status="offline";
  message="process not running";
 fi
 
