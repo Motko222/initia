@@ -31,7 +31,7 @@ threshold=$(initiad query consensus comet validator-set -o json | jq -r .validat
 if $catchingUp
  then 
   status="syncing"
-  message="height=$latestBlock/$network_height"
+  message="height=$latestBlock/$network_height left $(( network_height - latestBlock ))"
  else 
   if [ $active -eq 1 ]; then status=active; else status=inactive;message="height=$latestBlock/$network_height"; fi
 fi
