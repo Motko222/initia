@@ -12,7 +12,7 @@ esac
 sudo systemctl stop initiad.service
 
 # Backup the priv_validator_state
-cp $HOME/.initiad/data/priv_validator_state.json $HOME/.initia/priv_validator_state.json.backup
+cp $HOME/.initia/data/priv_validator_state.json $HOME/.initia/priv_validator_state.json.backup
 
 # Reset the node
 rm -rf $HOME/.initia/data
