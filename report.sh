@@ -5,7 +5,7 @@ source ~/scripts/$folder/cfg
 source ~/.bash_profile
 
 bucket=validator
-json=$(curl -s localhost:$RPC_PORT/status | jq .result.sync_info)
+json=$(curl -s $RPC_HOST:$RPC_PORT/status | jq .result.sync_info)
 pid=$(pgrep $BINARY)
 version=$($BINARY version)
 chain=$(initiad status | jq -r .node_info.network)
