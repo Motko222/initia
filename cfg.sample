@@ -6,3 +6,4 @@ PASS=
 DATA=~/.initia
 DENOM=uinit
 RPC_PORT=26657
+RPC_HOST=localhost
