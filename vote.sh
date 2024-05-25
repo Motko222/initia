@@ -8,7 +8,7 @@ source ~/scripts/$folder/cfg
 [ -z $1 ] && read -p "From ($KEY) ? " key || key=$1
 [ -z $key ] && key=$KEY
 
-[ -z $2 ] && read -p "Proposition ? " prop || prop=$2
+[ -z $2 ] && read -p "Proposal ? " prop || prop=$2
 [ -z $3 ] && read -p "Option ? " option || option=$3
 
 echo $PASS | $BINARY tx gov vote $prop $option --from $key \
