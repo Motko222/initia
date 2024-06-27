@@ -6,6 +6,7 @@ source ~/.bash_profile
 
 network=testnet
 group=validator
+id=$ID
 
 json=$(curl -s $RPC_HOST:$RPC_PORT/status | jq .result.sync_info)
 pid=$(pgrep $BINARY)
@@ -53,7 +54,7 @@ fi
 cat << EOF
 {
   "updated":"$(date --utc +%FT%TZ)",
-  "id":"$ID",
+  "id":"$id",
   "machine":"$MACHINE",
   "version":"$version",
   "chain":"$chain",
